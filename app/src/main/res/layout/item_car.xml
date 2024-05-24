@@ -21,9 +21,22 @@
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"/>
 
+        <Button
+            android:id="@+id/likeBtn"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:icon="@drawable/like"
+            app:singleSelection="true"
+            android:textSize="12dp"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:id="@+id/shortSpecs"
             app:layout_constraintTop_toBottomOf="@id/carThumbnail"
             android:orientation="horizontal">
@@ -32,26 +45,30 @@
                 android:id="@+id/carBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="Toyota"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textSize="22dp"
+                android:fontFamily="@font/wixmadefordisplay_extrabold"
+                android:textStyle="bold"
+                />
 
             <TextView
-                android:layout_width="110dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/carModel"
                 android:text="Supra"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/carBrand"
-                app:layout_constraintEnd_toStartOf="@id/carYear"
+                android:fontFamily="@font/wixmadefordisplay_bold"
                 android:layout_toEndOf="@id/carBrand"
-                android:textSize="18dp"/>
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,23 +77,11 @@
                 android:text="2004"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/carModel"
-                android:textSize="18dp"/>
-
-            <Button
-                android:id="@+id/likeBtn"
-                style="?attr/materialIconButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/cardview_light_background"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:icon="@drawable/like"
-                app:singleSelection="true"
-                android:textColor="@color/md_theme_tertiaryFixedDim_mediumContrast"
-                android:text="Добавить"
-                android:textSize="12dp"/>
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/wixmadefordisplay_bold"
+                android:textSize="22dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,6 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/shortSpecs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
             android:id="@+id/expandableLayout">
 
             <View
@@ -93,10 +100,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/textSpecsDetails"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="4dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="4dp"
+                android:id="@+id/line"
                 android:background="@color/md_theme_outline"
                 />
 
@@ -108,7 +115,9 @@
                 android:layout_marginStart="8dp"
                 android:id="@+id/textSpecs"
                 android:text="Характеристики:"
-                android:textStyle="bold|italic"/>
+                android:fontFamily="@font/wixmadefordisplay_bold"
+                android:textStyle="bold|italic"
+                android:textSize="16dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +128,37 @@
                 android:layout_marginStart="8dp"
                 android:id="@+id/textSpecsDetails"
                 android:layout_marginEnd="8dp"
-                android:text="Tut takoe-to tam takoe-to"/>
+                android:text="Tut takoe-to tam takoe-to"
+                android:fontFamily="@font/wixmadefordisplay_semibold"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textPriceCar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/priceText"
+                android:text="Цена:"
+                android:fontFamily="@font/wixmadefordisplay_bold"
+                android:textStyle="bold|italic"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/priceText"
+                app:layout_constraintTop_toBottomOf="@id/textSpecsDetails"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/textPriceCar"
+                android:text="3200000 руб."
+                android:fontFamily="@font/wixmadefordisplay_bold"
+                android:textStyle="bold"
+                android:textSize="14dp" />
 
 
 

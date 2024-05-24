@@ -29,11 +29,11 @@ public class CatalogFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
         DBHelper db = new DBHelper(getContext());
-        viewModel.getList(getContext(), db);
+        viewModel.getList(db);
 
         if (viewModel.list.getValue().isEmpty()) {
             db.setDataInDB();
-            viewModel.getList(getContext(), db);
+            viewModel.getList(db);
         }
 
         searchView = view.findViewById(R.id.searchView);

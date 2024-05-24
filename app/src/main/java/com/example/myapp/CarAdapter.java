@@ -63,10 +63,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
         if (db.searchInLiked(carItem) != null) {
-            holder.likeBtn.setText("Удалить");
             holder.likeBtn.setIconResource(R.drawable.like_fill);
         } else {
-            holder.likeBtn.setText("Добавить");
             holder.likeBtn.setIconResource(R.drawable.like);
         }
         Glide.with(holder.carThumbnail)
@@ -76,10 +74,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.carBrand.setText(carItem.getCarBrand());
         holder.carModel.setText(carItem.getCarModel());
         holder.carYear.setText(String.valueOf(carItem.getCarYear()));
+        holder.carPrice.setText(String.valueOf(carItem.getPrice()) + " руб.");
+
         holder.specsDetails.setText(carItem.getCarInfo());
         holder.likeBtn.setOnClickListener(view -> {
             viewModel.manageLiked(db, carItem);
-            viewModel.getLiked(context, db);
+            viewModel.getLiked(db);
             notifyDataSetChanged();
         });
     }
@@ -98,6 +98,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         TextView carModel;
         TextView carYear;
         TextView specsDetails;
+        TextView carPrice;
         MaterialButton likeBtn;
         ConstraintLayout expandableLayout, mainLayout;
 
@@ -108,6 +109,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
             carBrand = itemView.findViewById(R.id.carBrand);
             carModel = itemView.findViewById(R.id.carModel);
             carYear = itemView.findViewById(R.id.carYear);
+            carPrice = itemView.findViewById(R.id.textPriceCar);
             specsDetails = itemView.findViewById(R.id.textSpecsDetails);
             likeBtn = itemView.findViewById(R.id.likeBtn);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);

@@ -34,7 +34,14 @@ public class LikeFragment extends Fragment {
         floatBtn = view.findViewById(R.id.myFloatBtn);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        viewModel.getLiked(getContext(), db);
+        viewModel.getLiked(db);
+
+        floatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.deleteAllLiked(db);
+            }
+        });
 
         viewModel.likedList.observe(getViewLifecycleOwner(), carItems -> {
             if (!carItems.isEmpty()) {

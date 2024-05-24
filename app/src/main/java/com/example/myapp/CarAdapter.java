@@ -63,8 +63,10 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
         if (db.searchInLiked(carItem) != null) {
+            holder.likeBtn.setIconTintResource(R.color.md_theme_tertiaryFixed_mediumContrast);
             holder.likeBtn.setIconResource(R.drawable.like_fill);
         } else {
+            holder.likeBtn.setIconTintResource(R.color.md_theme_tertiaryFixed_mediumContrast);
             holder.likeBtn.setIconResource(R.drawable.like);
         }
         Glide.with(holder.carThumbnail)

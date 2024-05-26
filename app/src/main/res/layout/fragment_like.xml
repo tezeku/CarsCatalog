@@ -25,10 +25,14 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"/>
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:id="@+id/likeImg"
-        android:src="@drawable/like"/>
+        android:text="Здесь пусто\nдобавьте что-нибудь из каталога"
+        android:textSize="18dp"
+        android:fontFamily="@font/wixmadefordisplay_extrabold"
+        android:textColor="@color/md_theme_secondaryContainer_mediumContrast"/>
 
 </FrameLayout>

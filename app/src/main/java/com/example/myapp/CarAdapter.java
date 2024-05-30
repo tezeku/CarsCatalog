@@ -1,6 +1,10 @@
 package com.example.myapp;
 
+import static android.app.ProgressDialog.show;
+
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -27,12 +32,14 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     MyViewModel viewModel;
     DBHelper db;
     Boolean expanded;
+    Boolean isAuth;
 
-    public CarAdapter(Context context, List<CarItem> carsArrayList, MyViewModel viewModel) {
+    public CarAdapter(Context context, List<CarItem> carsArrayList, MyViewModel viewModel, Boolean isAuthorized) {
         this.context = context;
         this.carsArrayList = carsArrayList;
         this.viewModel = viewModel;
         db = new DBHelper(context);
+        this.isAuth = isAuthorized;
     }
 
     @NonNull
@@ -77,12 +84,25 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.carModel.setText(carItem.getCarModel());
         holder.carYear.setText(String.valueOf(carItem.getCarYear()));
         holder.carPrice.setText(String.valueOf(carItem.getPrice()) + " руб.");
-
         holder.specsDetails.setText(carItem.getCarInfo());
+
         holder.likeBtn.setOnClickListener(view -> {
-            viewModel.manageLiked(db, carItem);
-            viewModel.getLiked(db);
-            notifyDataSetChanged();
+            if (isAuth) {
+                viewModel.manageLiked(db, carItem);
+                viewModel.getLiked(db);
+                notifyDataSetChanged();
+            } else {
+                new MaterialAlertDialogBuilder(context)
+                        .setTitle("Вы не авторизованы")
+                        .setMessage("После нажатия на эту кнопку, машина могла бы добавиться в ваш личный каталог избранного, так что скорее регистрируйтесь :)")
+                        .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+            }
         });
     }
 

@@ -1,10 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LikeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LikeFragment"
+    android:background="@drawable/gradient_bkg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/userLayoutOnLiked"
+        android:background="@drawable/card_on_like_page">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/profileimg_for_like"
+            android:id="@+id/userIconOnLiked"
+            app:tint="@color/cardview_dark_background"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/userIconOnLiked"
+            app:layout_constraintStart_toEndOf="@id/userIconOnLiked"
+            app:layout_constraintBottom_toBottomOf="@id/userIconOnLiked"
+            android:layout_marginStart="5dp"
+            android:text="Вы не авторизованы"
+            android:fontFamily="@font/wixmadefordisplay_extrabold"
+            android:textSize="16dp"
+            android:textColor="@color/cardview_dark_background"
+            android:id="@+id/userTextIdOnLiked"/>
+
+        <Button
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:id="@+id/logoutBtnOnLiked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/logout_ico_for_liked"
+            android:backgroundTint="#204B3970"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            />
+
+        <Button
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:id="@+id/regBtnOnLiked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/icon_for_reg_on_like"
+            android:backgroundTint="#204B3970"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -13,7 +74,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         tools:listitem="@layout/item_car"
         android:visibility="gone"/>
 
@@ -23,7 +84,8 @@
         android:id="@+id/myFloatBtn"
         android:src="@drawable/trash"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -33,6 +95,6 @@
         android:text="Здесь пусто\nдобавьте что-нибудь из каталога"
         android:textSize="18dp"
         android:fontFamily="@font/wixmadefordisplay_extrabold"
-        android:textColor="@color/md_theme_secondaryContainer_mediumContrast"/>
+        android:textColor="#7F6AA5"/>
 
 </FrameLayout>

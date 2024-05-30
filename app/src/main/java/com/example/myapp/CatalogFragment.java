@@ -14,6 +14,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.search.SearchBar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +24,18 @@ public class CatalogFragment extends Fragment {
     private MyViewModel viewModel;
     CarAdapter carAdapter;
     private androidx.appcompat.widget.SearchView searchView;
+    private Boolean isAuthorized;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            isAuthorized = true;
+        } else {
+            isAuthorized = false;
+        }
+
         viewModel = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
         DBHelper db = new DBHelper(getContext());
         viewModel.getList(db);
@@ -56,7 +65,7 @@ public class CatalogFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         viewModel.list.observe(getViewLifecycleOwner(), carItems -> {
-            carAdapter = new CarAdapter(getContext(), carItems, viewModel);
+            carAdapter = new CarAdapter(getContext(), carItems, viewModel, isAuthorized);
             recyclerView.setAdapter(carAdapter);
             carAdapter.notifyDataSetChanged();
         });

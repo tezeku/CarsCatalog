@@ -31,6 +31,16 @@ public class MyViewModel extends ViewModel {
         }
     }
 
+    public void setLiked(DBHelper db, CarItem carItem) {
+        try {
+            likedList.setValue((db.getLiked()));
+            db.addLiked(carItem);
+            likedList.setValue((db.getLiked()));
+        } catch (Exception e) {
+            Log.i("setLiked", e.getMessage());
+        }
+    }
+
     public void manageLiked(DBHelper db, CarItem carItem) {
         try {
             likedList.setValue(db.getLiked());

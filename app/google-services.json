@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "351457404788",
+    "project_id": "cargallery-b812f",
+    "storage_bucket": "cargallery-b812f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351457404788:android:9fb1ee66e02ef56324ee21",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6FtpcglM_BWTSbI1bQvk4Rq0EVtn4u5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

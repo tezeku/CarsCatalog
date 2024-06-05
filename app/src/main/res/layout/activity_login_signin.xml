@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/logLin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginSigninActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_animation"
+        android:background="@drawable/gradient_bkg"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLogReg"
+        tools:context=".LoginFragment"
+        android:background="@drawable/gradient_bkg">
+
+        <ImageView
+            android:layout_width="207dp"
+            android:layout_height="266dp"
+            android:src="@drawable/profile_img"
+            app:tint="@color/cardview_dark_background"
+            android:layout_gravity="center|top"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:id="@+id/viewCard"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/card_on_start_page"
+                android:layout_marginTop="30dp"
+                android:elevation="20dp"
+                android:alpha="0.2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вход"
+                android:fontFamily="@font/wixmadefordisplay_extrabold"
+                android:textSize="36dp"
+                android:textColor="@color/cardview_dark_background"
+                android:alpha="0.9"
+                app:layout_constraintTop_toTopOf="@id/viewCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/email_text_layout"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/email_icon"
+                app:layout_constraintStart_toStartOf="@id/viewCard"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#992A164D"
+                android:id="@+id/email_icon"
+                android:layout_marginTop="130dp"
+                android:layout_marginStart="20dp"/>
+
+            <ImageView
+                android:id="@+id/passwd_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/passwd_icon"
+                app:layout_constraintStart_toStartOf="@id/email_icon"
+                app:layout_constraintTop_toBottomOf="@id/email_icon"
+                app:tint="#992A164D" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_text_layout"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/email_icon"
+                app:layout_constraintTop_toTopOf="@id/email_icon"
+                app:layout_constraintBottom_toBottomOf="@id/email_icon"
+                app:layout_constraintEnd_toEndOf="@id/viewCard"
+                android:hint="Email"
+                android:textColorHint="#2A164D"
+                app:hintTextColor="#2A164D"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                app:endIconMode="clear_text"
+                app:cursorColor="#992A164D"
+                app:endIconTint="#2A164D"
+                app:boxStrokeColor="#2A164D">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_email_edit_text"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#2A164D"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwd_text_layout"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/passwd_icon"
+                app:layout_constraintTop_toTopOf="@id/passwd_icon"
+                app:layout_constraintBottom_toBottomOf="@id/passwd_icon"
+                app:layout_constraintEnd_toEndOf="@id/viewCard"
+                android:hint="Пароль"
+                android:textColorHint="#2A164D"
+                app:hintTextColor="#2A164D"
+                app:cursorColor="#992A164D"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#2A164D"
+                app:boxStrokeColor="#2A164D">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_passwd_edit_text"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="#2A164D"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                style="@style/Widget.Material3.Button.TonalButton.Icon"
+                android:id="@+id/filledTonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/passwd_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/viewCard"
+                app:icon="@drawable/sign_in"
+                app:iconTint="@color/md_theme_primaryFixed"
+                android:text="Войти"
+                android:textColor="@color/md_theme_primaryFixed"
+                android:fontFamily="@font/wixmadefordisplay_semibold"
+                android:backgroundTint="#662A164D"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/viewCard"
+                app:layout_constraintStart_toStartOf="@id/viewCard"
+                app:layout_constraintEnd_toEndOf="@id/viewCard"
+                android:id="@+id/linLayReg"
+                android:orientation="horizontal"
+                android:layout_marginStart="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/labelRegBtn"
+                    android:layout_gravity="center_vertical|start"
+                    android:text="Впервые здесь?"
+                    android:fontFamily="@font/wixmadefordisplay_semibold"
+                    android:textColor="@color/cardview_dark_background"/>
+
+                <Button
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:id="@+id/textRegBtn"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#7F6AA5"
+                    android:text="Зарегистрироваться"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                style="@style/Widget.Material3.Button.TextButton"
+                android:id="@+id/textToGoUnreg"
+                app:layout_constraintTop_toBottomOf="@id/linLayReg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7F6AA5"
+                android:text="Продолжить без входа"
+                />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

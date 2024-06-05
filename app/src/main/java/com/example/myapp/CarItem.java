@@ -42,4 +42,6 @@ public class CarItem {
         this.carInfo = carInfo;
         this.expanded = false;
     }
+
+    public CarItem() {}
 }

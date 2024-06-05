@@ -35,15 +35,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public void setDataInDB() {
         SQLiteDatabase db = this.getWritableDatabase();
         List<CarItem> initialCars = new ArrayList<>();
-        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-vertis-journal/4080458/001.jpg_1626940945546/orig", "Toyota", "Supra", 1995, 10000000, "ДВС: 2JZ-GTE 320 л.с.\nПробег: 13000"));
-        initialCars.add(new CarItem("https://api2.ma.ru/images/models/toyota/rav4noviy/28657/28657_medium.jpg", "Toyota", "RAV4", 2021, 3200000, "ДВС: 149 л.с."));
-        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-verba/3587101/2a00000178875ee704791437db034a6502a8/cattouchret", "Toyota", "Land Cruiser Prado", 2021, 4900000, "ДВС: 204 л.с.\nПробег: 6000"));
-        initialCars.add(new CarItem("https://porsche-avtodom.ru/upload/iblock/5fb/2ph4j6itaovpygqv0xme9x8mj2ty0c4z.jpg", "Porsche", "Taycan", 1995, 20000000, "ДВС: 476 л.с.\nПробег: 300"));
-        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-verba/787013/2a000001675ec26d44c5fc838f55f253d508/cattouchret", "Porsche", "911", 2018, 13200000, "ДВС: 385 л.с.\nПробег: 200"));
-        initialCars.add(new CarItem("https://www.porsche-moscow.ru/photos/cars/custom/454507_uJOy7ru8F2exgvucpESPhTruABbmXi7x.jpg.optimized.jpg", "Porsche", "911 Turbo S", 2021, 23900000, "ДВС: 650 л.с.\nПробег: 100"));
-        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-autoru-vos/2068358/0875c36755ebafb6a4e225636e38b76b/456x342", "BMW", "Z3 coupe", 2000, 2000000, "ДВС: 192 л.с.\nПробег: 17000"));
-        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-autoru-vos/5592926/600d057f7f776eff3673a837a68ba6b4/456x342", "BMW", "M4", 2021, 12200000, "ДВС: 510 л.с.\nПробег: 10000"));
-        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-autoru-vos/1977683/2f179491ca15118ee50660b2d64620d2/456x342", "BMW", "M5", 2018, 12300000, "ДВС: 600 л.с.\nПробег: 25000"));
+        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-vertis-journal/4080458/001.jpg_1626940945546/orig", "Toyota", "Supra", 1995, 10000000, "ДВС: 2JZ-GTE 320 л.с.\nКПП: Механическая\nРуль: Правый\nПробег: 13000"));
+        initialCars.add(new CarItem("https://api2.ma.ru/images/models/toyota/rav4noviy/28657/28657_medium.jpg", "Toyota", "RAV4", 2021, 3200000, "ДВС: 149 л.с.\nКПП: Автомат\nРуль: Левый\nПробег: 300"));
+        initialCars.add(new CarItem("https://porsche-avtodom.ru/upload/iblock/5fb/2ph4j6itaovpygqv0xme9x8mj2ty0c4z.jpg", "Porsche", "Taycan", 1995, 20000000, "ДВС: 476 л.с.\nКПП: Автомат\nРуль: Левый\nПробег: 300"));
+        initialCars.add(new CarItem("https://assets.avtocod.ru/storage/images/articles/TXRJ8abIqCwxnTSEQfiOzbhPybL0kXpcKfsMr83a.jpeg", "Volkswagen", "Touareg", 2010, 1400000, "ДВС: 240 л.с.\nКПП: Автомат\nРуль: Левый\nПробег: 28000"));
+        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-verba/787013/2a000001675ec26d44c5fc838f55f253d508/cattouchret", "Porsche", "911", 2018, 13200000, "ДВС: 385 л.с.\nКПП: Автомат\nРуль: Левый\nПробег: 200"));
+        initialCars.add(new CarItem("https://www.porsche-moscow.ru/photos/cars/custom/454507_uJOy7ru8F2exgvucpESPhTruABbmXi7x.jpg.optimized.jpg", "Porsche", "911 Turbo S", 2021, 23900000, "ДВС: 650 л.с.\nКПП: Автомат\nРуль: Левый\nПробег: 100"));
+        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-verba/3587101/2a00000178875ee704791437db034a6502a8/cattouchret", "Toyota", "Land Cruiser Prado", 2021, 4900000, "ДВС: 204 л.с.\nКПП: Механическая\nРуль: Левый\nПробег: 6000"));
+        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-autoru-vos/2068358/0875c36755ebafb6a4e225636e38b76b/456x342", "BMW", "Z3 coupe", 2000, 2000000, "ДВС: 192 л.с.\nКПП: Механическая\nРуль: Левый\nПробег: 17000"));
+        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-autoru-vos/5592926/600d057f7f776eff3673a837a68ba6b4/456x342", "BMW", "M4", 2021, 12200000, "ДВС: 510 л.с.\nКПП: Автомат\nРуль: Левый\nПробег: 10000"));
+        initialCars.add(new CarItem("https://avatars.mds.yandex.net/get-autoru-vos/1977683/2f179491ca15118ee50660b2d64620d2/456x342", "BMW", "M5", 2018, 12300000, "ДВС: 600 л.с.\nКПП: Механическая\nРуль: Левый\nПробег: 25000"));
 
         for (CarItem item : initialCars) {
             ContentValues values = new ContentValues();
@@ -87,6 +88,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addListLiked(List<CarItem> carItem) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        for (CarItem item : carItem) {
+            addLiked(item);
+        }
+    }
+
     public void removeOneLiked(CarItem carItem) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -104,8 +114,6 @@ public class DBHelper extends SQLiteOpenHelper {
         // Закрытие базы данных
         db.close();
     }
-
-
 
     public CarItem searchInLiked(CarItem carItem) {
         SQLiteDatabase db = this.getReadableDatabase();

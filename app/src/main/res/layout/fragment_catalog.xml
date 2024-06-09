@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".CatalogFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animaQuest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/coin_anima"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        android:visibility="gone"
+        android:background="@drawable/gradient_bkg"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,17 +23,33 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_width="0dp"
             android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/horscrview"
+            app:layout_constraintEnd_toStartOf="@id/questionBtn"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
             android:background="@drawable/search_view_bg"
             app:iconifiedByDefault="false"
-            app:queryHint="Найдите здесь ..." />
+            app:queryHint="Найдите здесь" />
+
+        <Button
+            android:id="@+id/questionBtn"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="@id/searchView"
+            app:layout_constraintBottom_toBottomOf="@id/searchView"
+            app:layout_constraintStart_toEndOf="@id/searchView"
+            app:layout_constraintEnd_toEndOf="@id/catalogRecyclerView"
+            android:background="@drawable/question_ic"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#2A164D"
+            android:elevation="20dp"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"

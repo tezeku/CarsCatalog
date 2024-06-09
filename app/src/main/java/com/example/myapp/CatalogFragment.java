@@ -1,5 +1,7 @@
 package com.example.myapp;
 
+import android.animation.Animator;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,24 +16,29 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.search.SearchBar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CatalogFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyViewModel viewModel;
     CarAdapter carAdapter;
     private androidx.appcompat.widget.SearchView searchView;
-    private Boolean isAuthorized;
+    private Boolean isAuthorized, flagForMonetka;
     private ChipGroup chipGroup;
+    private Button monetkaBtn;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -71,6 +78,66 @@ public class CatalogFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
+
+        monetkaBtn = view.findViewById(R.id.questionBtn);
+        LottieAnimationView animaCoin = view.findViewById(R.id.animaQuest);
+        Random r = new Random();
+        animaCoin.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(@NonNull Animator animation) {
+                flagForMonetka = r.nextInt(2) == 0 ? true : false;
+            }
+
+            @Override
+            public void onAnimationEnd(@NonNull Animator animation) {
+                animaCoin.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle(flagForMonetka ? "Можете брать!" : "Думаем, эта машина вам не подходит")
+                        .setPositiveButton("Спасибо!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).show();
+            }
+
+            @Override
+            public void onAnimationCancel(@NonNull Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(@NonNull Animator animation) {
+
+            }
+        });
+        monetkaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle("Монетка!")
+                        .setMessage("А это наша главная фишка - если вы сомневаетесь в выборе машины и готовы отдаться воле случая - монетка подскажет вам :)")
+                        .setNegativeButton("Нет!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setPositiveButton("Давай!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                animaCoin.cancelAnimation();
+                                animaCoin.playAnimation();
+                                recyclerView.setVisibility(View.GONE);
+                                animaCoin.setVisibility(View.VISIBLE);
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+            }
+        });
+
         chipGroup = view.findViewById(R.id.gropChipOnCat);
         List<String> tmpChips = new ArrayList<>();
         List<String> selectedChips = new ArrayList<>();
@@ -98,12 +165,6 @@ public class CatalogFragment extends Fragment {
                             selectedChips.add(clickedChipText);
                         }
                         filterListForChips(selectedChips);
-                        /*
-                        Chip clickedChip = (Chip) v;
-                        String clickedChipText = clickedChip.getText().toString(); // Получаем текст нажатого Chip
-                        Log.d("Chip Clicked", clickedChipText);
-
-                        filterList(clickedChipText);*/
                     }
                 });
 
@@ -116,19 +177,6 @@ public class CatalogFragment extends Fragment {
             recyclerView.setAdapter(carAdapter);
             carAdapter.notifyDataSetChanged();
         });
-    }
-
-    private String updateQuery(List<String> selectedChips) {
-        StringBuilder queryBuilder = new StringBuilder();
-
-        for (String chipText : selectedChips) {
-            if (queryBuilder.length() > 0) {
-                queryBuilder.append(" и ");
-            }
-            queryBuilder.append(chipText);
-        }
-
-        return queryBuilder.toString();
     }
 
     private void filterListForChips(List<String> selectedChips) {
